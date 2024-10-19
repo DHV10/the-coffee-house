@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AddressView: View {
-    @State var address: String = "This is address for testing"
+    @State var location: String = "This is address for testing"
     
     var body: some View {
         HStack {
-            Image(systemName: "mappin.and.ellipse")
-            Text(address)
-                .font(.subheadline)
+            Image(systemName: "mappin.circle")
+            Text(location)
+                .font(.headline)
                 .fontWeight(.semibold)
             Spacer()
-            Image(systemName: "phone.fill")
+            Image(systemName: "phone")
         }
         .padding(.horizontal)
     }

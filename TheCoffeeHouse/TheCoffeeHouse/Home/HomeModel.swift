@@ -12,14 +12,13 @@ struct Category {
     let name: String
 }
 
-struct Coffee: Codable {
+struct Coffee: Codable, Identifiable {
     let id: String
     let image: String
     let title: String
     let about: String
     let rate: String
     let size: [String]
-//    let toppings: [Topping]?
     let isFavourite: Bool
 }
 

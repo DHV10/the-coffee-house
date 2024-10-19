@@ -11,7 +11,7 @@ import SwiftUI
 struct TheCoffeeHouseApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabbarView()
         }
     }
 }

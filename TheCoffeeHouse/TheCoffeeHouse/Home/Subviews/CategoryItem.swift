@@ -19,7 +19,7 @@ struct CategoryItem: View {
             isSelected.toggle()
         }) {
             HStack {
-                Image(systemName: icon)
+                Image(icon)
                     .resizable()
                     .frame(width: 16, height: 16)
                 Text(title)

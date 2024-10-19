@@ -11,3 +11,16 @@ enum ImageConstant: String {
     case coffeeLogo = "coffee-logo"
     case login = "login"
 }
+
+enum PaymentMethod {
+    case applePay
+    case visa
+    case cash
+}
+
+enum StepOrder {
+    case confirmed
+    case processed
+    case onDelivery
+    case completed
+}

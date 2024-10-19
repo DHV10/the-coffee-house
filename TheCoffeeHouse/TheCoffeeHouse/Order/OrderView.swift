@@ -1,20 +1,24 @@
 //
-//  CartView.swift
+//  OrderView.swift
 //  TheCoffeeHouse
 //
-//  Created by Việt Dương Hoàng on 16/10/24.
+//  Created by Việt Dương Hoàng on 19/10/24.
 //
 
 import SwiftUI
 
-struct CartView: View {
-    private var viewModel = CartViewModel()
+struct OrderView: View {
+    private var viewModel = OrderViewModel()
+    var methods = ["apple", "banana", "orange", "kiwi"]
+    @State private var selectedMethod: String = "banana"
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-                Image("carbon_delivery")
+        VStack(alignment: .leading, spacing: 16) {
+            Button {
+                
+            } label: {
+                Image("back")
+                    .padding(.bottom, 32)
             }
             
             Text("YOUR ORDER:")
@@ -22,16 +26,32 @@ struct CartView: View {
                 .font(.title3)
             
             VStack {
-                ForEach(viewModel.listCartCoffee) { coffee in
+                ForEach(viewModel.listOrder) { order in
                     CoffeeListView(isFavScreen: false)
                 }
+            }
+            
+            HStack {
+                Image(systemName: "mappin.circle")
+                Text("Your location here")
                 
-                Text("Total: 14$")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.vertical)
+            }
+            .bold()
+            .font(.headline)
+            
+            VStack(alignment: .leading) {
+                Text("Payment method:")
                     .font(.headline)
-                
-                Spacer()
+                CustomDropdownWithIcons()
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+            
+            VStack {
+                Text("Total: 16$")
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .font(.headline)
                 
                 HStack {
                     Text("Go to Cart")
@@ -51,10 +71,9 @@ struct CartView: View {
             }
         }
         .padding(.horizontal, 32)
-        .padding(.bottom, 16)
     }
 }
 
 #Preview {
-    CartView()
+    OrderView()
 }

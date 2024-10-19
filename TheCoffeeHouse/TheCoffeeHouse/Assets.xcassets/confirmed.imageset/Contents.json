@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "fi-ss-cube.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

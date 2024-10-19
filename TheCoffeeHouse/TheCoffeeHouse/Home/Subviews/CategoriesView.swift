@@ -10,11 +10,11 @@ import SwiftUI
 struct CategoriesView: View {
 
     let categories = [
-        ("COFFEE", "cup.and.saucer.fill"),
-        ("DESSERTS", "birthday.cake.fill"),
-        ("ALCOHOL", "wineglass.fill"),
-        ("ALCOHOL FREE", "leaf.fill"),
-        ("BREAKFAST", "leaf.fill")
+        ("COFFEE", "coffee-cat"),
+        ("DESSERTS", "pancake"),
+        ("ALCOHOL", "wine"),
+        ("ALCOHOL FREE", "wine.free"),
+        ("BREAKFAST", "breakfast")
     ]
 
     var body: some View {

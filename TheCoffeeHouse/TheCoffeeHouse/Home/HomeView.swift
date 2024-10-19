@@ -18,31 +18,28 @@ let menuItems = [
 struct HomeView: View {
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                // Address and contact info
+            VStack() {
                 NavigationLink(
                     destination: Text("DHV")
                 ) {
                     AddressView()
                         .background()
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, 16)
                 }
                 
-                // Search Bar
-//                SearchView()
-//                    .padding(.horizontal, 10)
+                SearchView()
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
                 
-                // Categories
                 CategoriesView()
                     .scaledToFit()
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 16)
                 
-                // Menu Items
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 0) {
                         ForEach(menuItems, id: \.id) { item in
                             CoffeeItemView(coffeeItem: item)
-                                .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
+                                .padding(EdgeInsets())
                         }
                     }
                 }
