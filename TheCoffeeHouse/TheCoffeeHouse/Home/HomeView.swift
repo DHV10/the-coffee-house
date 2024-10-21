@@ -20,7 +20,7 @@ struct HomeView: View {
         NavigationView {
             VStack() {
                 NavigationLink(
-                    destination: Text("DHV")
+                    destination: MapView()
                 ) {
                     AddressView()
                         .background()
@@ -35,13 +35,13 @@ struct HomeView: View {
                     .scaledToFit()
                     .padding(.horizontal, 16)
                 
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 0) {
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
                         ForEach(menuItems, id: \.id) { item in
                             CoffeeItemView(coffeeItem: item)
-                                .padding(EdgeInsets())
                         }
                     }
+                    .padding(.horizontal, 32)
                 }
             }
             .ignoresSafeArea(edges: .bottom)

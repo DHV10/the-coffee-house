@@ -15,14 +15,14 @@ struct CoffeeItemView: View {
     @State var isLiked = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack(alignment: .topTrailing) {
-                Image(systemName: "leaf.fill")
+                Image("coffee-detail")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: 150)
-                    .cornerRadius(10)
-                    .clipped()
+                    .frame(minWidth: 100, minHeight: 130)
+                    .cornerRadius(16)
+                
                 
                 Button(action: {
                     isLiked.toggle()
@@ -30,60 +30,48 @@ struct CoffeeItemView: View {
                     Image(systemName: isLiked ? "heart.fill" : "heart")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .foregroundColor(isLiked ? .red : .gray)
-                        .frame(width: 24, height: 24)
+                        .foregroundColor(.red)
+                        .frame(width: 16, height: 16)
                         .padding(8)
                 }
             }
-            .padding(.init(top: 5, leading: 5, bottom: 0, trailing: 5))
+            .padding(8)
             
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading, spacing: 5) {
                         Text(coffeeItem.title)
-                            .font(.headline)
+                            .bold()
+                            .font(.system(size: 16))
                             .foregroundColor(.black)
-                        HStack {
-                            ForEach(sizes, id: \.self) { size in
-                                Button(action: {
-                                    selectedSize = size
-                                }) {
-                                    Text(size)
-                                        .font(.system(size: 6))
-                                        .padding(5)
-                                        .background(selectedSize == size ? Color.brown : Color.gray.opacity(0.2))
-                                        .foregroundColor(selectedSize == size ? .white : .black)
-                                        .cornerRadius(5)
-                                }
-                                .frame(width: 24, height: 10)
-                            }
-                        }
+                       SelectSizeCoffeeView(isDetailView: false)
                     }
-                    Spacer()
                 }
                 HStack {
                     Text(price)
-                        .font(.subheadline)
+                        .bold()
+                        .font(.system(size: 12))
                         .foregroundColor(.black)
                     
                     Spacer()
                     
                     Button(action: {
+                        
                     }) {
-                        Text("+")
-                            .frame(width: 40, height: 40)
-                            .background(Color.brown)
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
+                        Image("add_brown")
+                            .resizable()
+                            .frame(width: 20, height: 20)
                     }
                 }
-                .padding(.bottom, 5)
             }
+            .padding([.horizontal, .bottom])
         }
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(radius: 5)
-        .padding()
+        .overlay(
+            RoundedRectangle(cornerRadius: 24)
+                .stroke(Color(hex: "#BFBDC0") ?? .black, lineWidth: 0.5)
+        )
     }
 }
 

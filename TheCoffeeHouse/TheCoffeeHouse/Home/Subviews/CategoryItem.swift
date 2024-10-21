@@ -53,3 +53,26 @@ struct CategoryItem: View {
 #Preview {
     CategoryItem(title: "ALCOHOL FREE", icon: "leaf.fill", action: {})
 }
+
+struct CoffeeSizeButton: View {
+    var title: String
+    var isSelected: Bool
+    var isDetail: Bool = true
+
+    var body: some View {
+        Text(title)
+            .font(.system(size: isDetail ? 16 : 6, weight: .medium))
+            .padding(isDetail ? 10 : 4)
+            .background(isSelected ? Color.brown : Color.clear)
+            .foregroundColor(isSelected ? .white : .brown)
+            .cornerRadius(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.brown, lineWidth: 1)
+            )
+    }
+}
+
+#Preview {
+    CoffeeSizeButton(title: "Small", isSelected: true)
+}
