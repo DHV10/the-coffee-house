@@ -20,9 +20,8 @@ struct CoffeeItemView: View {
                 Image("coffee-detail")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(minWidth: 100, minHeight: 130)
+                    .frame(maxHeight: 100)
                     .cornerRadius(16)
-                
                 
                 Button(action: {
                     isLiked.toggle()
