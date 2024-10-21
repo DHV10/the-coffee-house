@@ -17,10 +17,11 @@ let menuItems = [
 
 struct HomeView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack() {
                 NavigationLink(
                     destination: MapView()
+                        .toolbar(.hidden, for: .tabBar)
                 ) {
                     AddressView()
                         .background()
@@ -44,8 +45,9 @@ struct HomeView: View {
                     .padding(.horizontal, 32)
                 }
             }
-            .ignoresSafeArea(edges: .bottom)
+            .padding(.bottom, 16)
         }
+        .ignoresSafeArea()
     }
 }
 
