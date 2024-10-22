@@ -17,6 +17,7 @@ struct Coffee: Codable, Identifiable {
     let image: String
     let title: String
     let about: String
+    let prize: String
     let rate: String
     let size: [String]
     let isFavourite: Bool

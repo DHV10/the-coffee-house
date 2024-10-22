@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct TheCoffeeHouseApp: App {
+    @StateObject var listCofeeBase = ListCoffeeBase()
     var body: some Scene {
         WindowGroup {
             TabbarView()
+                .environmentObject(listCofeeBase)
         }
     }
 }

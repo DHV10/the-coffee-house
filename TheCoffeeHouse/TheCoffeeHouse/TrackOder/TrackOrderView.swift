@@ -22,25 +22,31 @@ struct TrackOrderView: View {
                     .multilineTextAlignment(.center)
             }
             
-            VStack {
-                Spacer()
+            NavigationLink {
+                OrderStatusView()
+                    .toolbar(.hidden, for: .tabBar)
+            } label: {
                 VStack {
-                    Text("Track Your Order")
-                        .font(.title)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
+                    Spacer()
+                    VStack {
+                        Text("Track Your Order")
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .bold()
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                    .padding(16)
+                    .background {
+                        RoundedRectangle(cornerRadius: 32)
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color(hex: "#CB8A58") ?? .black, Color(hex: "#562B1A") ?? .black]), startPoint: .leading, endPoint: .trailing))
+                    }
+                    .padding()
+                    .padding(.vertical, 60)
                 }
-                .bold()
-                .font(.title3)
-                .foregroundStyle(.white)
-                .padding(16)
-                .background {
-                    RoundedRectangle(cornerRadius: 32)
-                        .fill(LinearGradient(gradient: Gradient(colors: [Color(hex: "#CB8A58") ?? .black, Color(hex: "#562B1A") ?? .black]), startPoint: .leading, endPoint: .trailing))
-                }
-                .padding()
-                .padding(.vertical, 60)
             }
+
         }
         .ignoresSafeArea()
     }

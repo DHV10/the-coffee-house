@@ -20,6 +20,6 @@ class FavouriteViewModel: ObservableObject {
 }
 
 var mockData: [Coffee] = [
-    Coffee(id: "1f23", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", rate: "3", size: [], isFavourite: true),
-    Coffee(id: "12e3", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", rate: "3", size: [], isFavourite: true)
+    Coffee(id: "1f23", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "5", rate: "3", size: [], isFavourite: true),
+    Coffee(id: "12e3", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "6", rate: "3", size: [], isFavourite: true)
 ]

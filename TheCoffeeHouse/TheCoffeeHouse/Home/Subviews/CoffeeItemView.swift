@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct CoffeeItemView: View {
-    let coffeeItem: Coffee
     let sizes: [String] = ["S", "M", "L"]
     let price: String = "2$"
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
     @State private var selectedSize: String = "M"
     @State var isLiked = false
-
+    let coffeeItem: Coffee
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .topTrailing) {
@@ -25,6 +26,11 @@ struct CoffeeItemView: View {
                 
                 Button(action: {
                     isLiked.toggle()
+                    if isLiked {
+                        listCoffeeBase.listFavouriteCoffee.append(coffeeItem)
+                    } else {
+                        listCoffeeBase.listFavouriteCoffee.removeAll(where: { $0.id == coffeeItem.id })
+                    }
                 }) {
                     Image(systemName: isLiked ? "heart.fill" : "heart")
                         .resizable()
@@ -43,7 +49,7 @@ struct CoffeeItemView: View {
                             .bold()
                             .font(.system(size: 16))
                             .foregroundColor(.black)
-                       SelectSizeCoffeeView(isDetailView: false)
+                        SelectSizeCoffeeView(isDetailView: false)
                     }
                 }
                 HStack {
@@ -55,7 +61,7 @@ struct CoffeeItemView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        listCoffeeBase.listCoffeeInCart.append(coffeeItem)
                     }) {
                         Image("add_brown")
                             .resizable()
@@ -74,7 +80,7 @@ struct CoffeeItemView: View {
     }
 }
 
-#Preview {
-    CoffeeItemView(coffeeItem: Coffee(id: "123", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", rate: "3", size: [], isFavourite: true))
-}
+//#Preview {
+//    CoffeeItemView(coffeeItem: Coffee(id: "123", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], isFavourite: true))
+//}
 

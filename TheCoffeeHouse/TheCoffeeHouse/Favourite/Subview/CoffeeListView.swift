@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CoffeeListView: View {
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
     let isFavScreen: Bool
+    let coffeeItem: Coffee
     
     var body: some View {
         HStack {
@@ -17,12 +19,12 @@ struct CoffeeListView: View {
                 .frame(width: 90, height: 60)
             
             VStack(alignment: .leading) {
-                Text("Coffee Item 1")
+                Text(coffeeItem.title)
                     .font(.headline)
-                Text("$1")
+                Text("$\(coffeeItem.rate)")
                     .font(.subheadline)
                 if isFavScreen {
-                    Image(systemName: "heart")
+                    Image(systemName: "heart.fill")
                         .foregroundStyle(.red)
                 }
                 
@@ -49,7 +51,11 @@ struct CoffeeListView: View {
                     }
                     
                     Button {
-                        
+                        if isFavScreen {
+                            listCoffeeBase.listCoffeeInCart.append(coffeeItem)
+                        } else {
+                            
+                        }
                     } label: {
                         Image("add-icon")
                     }
@@ -66,5 +72,5 @@ struct CoffeeListView: View {
 }
 
 #Preview {
-    CoffeeListView(isFavScreen: false)
+    CoffeeListView(isFavScreen: false, coffeeItem: mockData[0])
 }

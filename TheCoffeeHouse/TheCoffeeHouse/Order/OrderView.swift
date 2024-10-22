@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct OrderView: View {
-    private var viewModel = OrderViewModel()
-    var methods = ["apple", "banana", "orange", "kiwi"]
-    @State private var selectedMethod: String = "banana"
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @ObservedObject var viewModel = OrderViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Button {
-                
+                dismiss()
             } label: {
                 Image("back")
                     .padding(.bottom, 32)
@@ -26,8 +26,8 @@ struct OrderView: View {
                 .font(.title3)
             
             VStack {
-                ForEach(viewModel.listOrder) { order in
-                    CoffeeListView(isFavScreen: false)
+                ForEach(listCoffeeBase.listCoffeeInCart) { order in
+                    CoffeeListView(isFavScreen: false, coffeeItem: order)
                 }
             }
             
@@ -71,6 +71,7 @@ struct OrderView: View {
             }
         }
         .padding(.horizontal, 32)
+        .navigationBarBackButtonHidden()
     }
 }
 

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DetailCoffeeView: View {
+    @Environment(\.dismiss) var dismiss
+    let detailCoffee: Coffee
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
@@ -16,7 +18,7 @@ struct DetailCoffeeView: View {
                         .resizable()
                         .frame(height: 280)
                     HStack {
-                        Text("Capuchino")
+                        Text(detailCoffee.title)
                             .bold()
                             .font(.system(size: 28))
                             .foregroundStyle(.white)
@@ -25,7 +27,7 @@ struct DetailCoffeeView: View {
                         Spacer()
                         HStack {
                             Image(systemName: "star.fill")
-                            Text("4.9")
+                            Text(detailCoffee.rate)
                                 .padding(.trailing, 4)
                         }
                         .bold()
@@ -45,7 +47,7 @@ struct DetailCoffeeView: View {
                 
                 HStack(alignment:.top) {
                     Button(action: {
-                        
+                        dismiss()
                     }, label: {
                         Image("back_white")
                     })
@@ -55,7 +57,7 @@ struct DetailCoffeeView: View {
                     Button(action: {
                         
                     }, label: {
-                        Image(systemName: "heart")
+                        Image(systemName: detailCoffee.isFavourite ? "heart.fill" : "heart")
                             .foregroundStyle(.red)
                             .font(.title)
                     })
@@ -78,7 +80,7 @@ struct DetailCoffeeView: View {
                             Text("About")
                                 .bold()
                                 .font(.system(size: 20))
-                            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id ipsum vivamus velit lorem amet. Tincidunt cras volutpat aliquam porttitor molestie. Netus neque, habitasse id vulputate proin cras. Neque, vel duis sit vel pellentesque tempor. A commodo arcu tortor arcu, elit. ")
+                            Text(detailCoffee.about)
                                 .font(.system(size: 14))
                         }
                         .padding(.top)
@@ -105,7 +107,7 @@ struct DetailCoffeeView: View {
                             Rectangle()
                                 .frame(width: 1)
                             Spacer()
-                            Text("4$")
+                            Text("\(detailCoffee.prize)$")
                             Spacer()
                         }
                         .font(.system(size: 20))
@@ -123,11 +125,11 @@ struct DetailCoffeeView: View {
             }
             .background(.clear)
         }
-        
         .edgesIgnoringSafeArea(.all)
+        .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    DetailCoffeeView()
+    DetailCoffeeView(detailCoffee: mockData[0])
 }

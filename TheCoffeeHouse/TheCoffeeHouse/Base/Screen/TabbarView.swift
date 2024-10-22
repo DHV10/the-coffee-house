@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabbarView: View {
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    
     var body: some View {
         TabView {
             HomeView()
@@ -34,7 +36,7 @@ struct TabbarView: View {
                         Text("CartView")
                     }
                 }
-                .badge("12")
+                .badge("\(listCoffeeBase.listCoffeeInCart.count)")
             
             ProfileView()
                 .tabItem {

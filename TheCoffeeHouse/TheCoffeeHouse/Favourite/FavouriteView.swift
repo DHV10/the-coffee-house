@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct FavouriteView: View {
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
     private var viewModel = FavouriteViewModel()
     
     var body: some View {
@@ -14,8 +15,8 @@ struct FavouriteView: View {
             SearchView()
                 .padding(.vertical, 12)
             
-            List(viewModel.listFavourite) { coffee in
-                CoffeeListView(isFavScreen: true)
+            List(listCoffeeBase.listFavouriteCoffee) { coffee in
+                CoffeeListView(isFavScreen: true, coffeeItem: coffee)
                     .padding(.vertical, 8)
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)

@@ -6,15 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CartViewModel: ObservableObject {
+    
     @Published var listCartCoffee: [Coffee] = []
     
     init() {
-        getListCart()
+//        getListCart()
     }
     
     func getListCart() {
-        listCartCoffee = mockData
+//        listCartCoffee = mockData
     }
 }

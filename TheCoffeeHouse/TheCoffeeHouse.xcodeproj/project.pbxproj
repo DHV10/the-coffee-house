@@ -17,6 +17,7 @@
 		9B5BAA8E2CC3920A00E6247E /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BAA8D2CC3920A00E6247E /* OrderViewModel.swift */; };
 		9B5BAA902CC3977C00E6247E /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BAA8F2CC3977C00E6247E /* CustomDropDown.swift */; };
 		9B5BAA952CC39C2600E6247E /* TrackOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BAA942CC39C2600E6247E /* TrackOrderView.swift */; };
+		9B701ADE2CC7606700296AD5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B701ADD2CC7606700296AD5 /* HomeViewModel.swift */; };
 		9B7AD64E2CC68F4D0088B216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B7AD64D2CC68F4D0088B216 /* Assets.xcassets */; };
 		9B7AD6552CC695CA0088B216 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD6542CC695CA0088B216 /* MapView.swift */; };
 		9B7AD65A2CC69F5A0088B216 /* OrderStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD6592CC69F5A0088B216 /* OrderStatusView.swift */; };
@@ -54,6 +55,7 @@
 		9B5BAA8D2CC3920A00E6247E /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		9B5BAA8F2CC3977C00E6247E /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
 		9B5BAA942CC39C2600E6247E /* TrackOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderView.swift; sourceTree = "<group>"; };
+		9B701ADD2CC7606700296AD5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9B7AD64D2CC68F4D0088B216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B7AD6542CC695CA0088B216 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9B7AD6592CC69F5A0088B216 /* OrderStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				9B83352F2CC167E60000CFC5 /* Subviews */,
 				9BB6E2432CBFFD8900E00281 /* HomeView.swift */,
 				9BB6E25D2CC0064200E00281 /* HomeModel.swift */,
+				9B701ADD2CC7606700296AD5 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BB6E2562CC003A800E00281 /* Extension.swift in Sources */,
+				9B701ADE2CC7606700296AD5 /* HomeViewModel.swift in Sources */,
 				9B8335372CC16BC00000CFC5 /* CoffeeItemView.swift in Sources */,
 				9BB6E24E2CBFFE3300E00281 /* CartView.swift in Sources */,
 				9BCAE7332CBD7C22006FFE1A /* TabbarView.swift in Sources */,

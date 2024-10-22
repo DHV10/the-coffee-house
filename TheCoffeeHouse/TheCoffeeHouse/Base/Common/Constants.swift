@@ -24,3 +24,8 @@ enum StepOrder {
     case onDelivery
     case completed
 }
+
+class ListCoffeeBase: ObservableObject {
+    @Published var listCoffeeInCart: [Coffee] = []
+    @Published var listFavouriteCoffee: [Coffee] = []
+}
