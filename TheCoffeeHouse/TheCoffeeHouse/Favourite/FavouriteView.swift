@@ -15,14 +15,20 @@ struct FavouriteView: View {
             SearchView()
                 .padding(.vertical, 12)
             
-            List(listCoffeeBase.listFavouriteCoffee) { coffee in
-                CoffeeListView(isFavScreen: true, coffeeItem: coffee)
-                    .padding(.vertical, 8)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.clear)
+            if !listCoffeeBase.listFavouriteCoffee.isEmpty {
+                List(listCoffeeBase.listFavouriteCoffee) { coffee in
+                    CoffeeListView(isFavScreen: true, coffeeItem: coffee)
+                        .padding(.vertical, 8)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                }
+                .listStyle(.plain)
+            } else {
+                EmptyView()
+                Spacer()
             }
-            .listStyle(.plain)
+            
         }
         .padding(.horizontal, 32)
     }

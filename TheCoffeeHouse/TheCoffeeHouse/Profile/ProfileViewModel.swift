@@ -8,7 +8,7 @@
 import Foundation
 
 class ProfileViewModel: ObservableObject {
-    @Published var username: String = "Lores DHV"
-    @Published var phoneNumber: String = "90234203482"
-    @Published var address: String = "Ukraine, Ivano-Frankivsk, Kon..."
+    @Published var username: String = "Lores Amend"
+    @Published var phoneNumber: String = "0919508351"
+    @Published var address: String = "FPT Software, Tan Xa, Thach That, Ha Noi"
 }

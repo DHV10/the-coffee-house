@@ -11,6 +11,7 @@ struct OrderView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var listCoffeeBase: ListCoffeeBase
     @ObservedObject var viewModel = OrderViewModel()
+    @State var total: Int = 0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -25,16 +26,17 @@ struct OrderView: View {
                 .bold()
                 .font(.title3)
             
-            VStack {
-                ForEach(listCoffeeBase.listCoffeeInCart) { order in
-                    CoffeeListView(isFavScreen: false, coffeeItem: order)
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    ForEach(listCoffeeBase.listCoffeeInCart) { order in
+                        CoffeeListView(isFavScreen: false, coffeeItem: order)
+                    }
                 }
             }
             
             HStack {
                 Image(systemName: "mappin.circle")
-                Text("Your location here")
-                
+                Text("FPT Software, Tan Xa, Thach That, Ha Noi")
             }
             .bold()
             .font(.headline)
@@ -49,7 +51,7 @@ struct OrderView: View {
             Spacer()
             
             VStack {
-                Text("Total: 16$")
+                Text("Total: \(viewModel.total)$")
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .font(.headline)
                 
@@ -72,6 +74,10 @@ struct OrderView: View {
         }
         .padding(.horizontal, 32)
         .navigationBarBackButtonHidden()
+        .onAppear(perform: {
+            viewModel.listOrder = listCoffeeBase.listCoffeeInCart
+            viewModel.getTotal()
+        })
     }
 }
 

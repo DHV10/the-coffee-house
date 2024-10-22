@@ -46,7 +46,6 @@ struct TrackOrderView: View {
                     .padding(.vertical, 60)
                 }
             }
-
         }
         .ignoresSafeArea()
     }

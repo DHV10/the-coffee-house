@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-let menuItems = [
-    Coffee(id: "1f23", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "3", rate: "3", size: [], isFavourite: false),
-    Coffee(id: "12e3", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "3", rate: "3", size: [], isFavourite: false),
-    Coffee(id: "1fd23", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "4", rate: "3", size: [], isFavourite: false),
-    Coffee(id: "12fsfds3", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "5", rate: "3", size: [], isFavourite: false),
-    Coffee(id: "12sdfsdf3", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "6", rate: "3", size: [], isFavourite: false)
-]
-
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
     
@@ -52,7 +44,6 @@ struct HomeView: View {
                     .padding(.horizontal, 32)
                 }
             }
-            .padding(.bottom, 16)
         }
         .ignoresSafeArea()
     }

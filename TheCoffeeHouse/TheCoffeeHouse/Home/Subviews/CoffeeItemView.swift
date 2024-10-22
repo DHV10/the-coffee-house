@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct CoffeeItemView: View {
-    let sizes: [String] = ["S", "M", "L"]
-    let price: String = "2$"
     @EnvironmentObject var listCoffeeBase: ListCoffeeBase
     @State private var selectedSize: String = "M"
     @State var isLiked = false
-    let coffeeItem: Coffee
+    var coffeeItem: Coffee
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .topTrailing) {
-                Image("coffee-detail")
+                Image(coffeeItem.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxHeight: 100)
+                    .frame(maxWidth: 150, maxHeight: 100)
                     .cornerRadius(16)
                 
                 Button(action: {
@@ -53,7 +51,7 @@ struct CoffeeItemView: View {
                     }
                 }
                 HStack {
-                    Text(price)
+                    Text("\(coffeeItem.prize)$")
                         .bold()
                         .font(.system(size: 12))
                         .foregroundColor(.black)
@@ -80,7 +78,7 @@ struct CoffeeItemView: View {
     }
 }
 
-//#Preview {
-//    CoffeeItemView(coffeeItem: Coffee(id: "123", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], isFavourite: true))
-//}
+#Preview {
+    CoffeeItemView(coffeeItem: Coffee(id: "123", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], isFavourite: true))
+}
 

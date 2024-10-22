@@ -13,21 +13,21 @@ struct CoffeeListView: View {
     let coffeeItem: Coffee
     
     var body: some View {
-        HStack {
-            Image("mock-image")
+        HStack(alignment: .top) {
+            Image(coffeeItem.image)
                 .resizable()
                 .frame(width: 90, height: 60)
+                .cornerRadius(8)
             
             VStack(alignment: .leading) {
                 Text(coffeeItem.title)
                     .font(.headline)
-                Text("$\(coffeeItem.rate)")
+                Text("\(coffeeItem.prize)$")
                     .font(.subheadline)
                 if isFavScreen {
                     Image(systemName: "heart.fill")
                         .foregroundStyle(.red)
                 }
-                
             }
             
             Spacer()
@@ -46,18 +46,14 @@ struct CoffeeListView: View {
                         } label: {
                             Image("less")
                         }
-                        
-                        Text("9")
                     }
                     
-                    Button {
-                        if isFavScreen {
+                    if isFavScreen {
+                        Button {
                             listCoffeeBase.listCoffeeInCart.append(coffeeItem)
-                        } else {
-                            
+                        } label: {
+                            Image("add-icon")
                         }
-                    } label: {
-                        Image("add-icon")
                     }
                 }
             }
@@ -72,5 +68,5 @@ struct CoffeeListView: View {
 }
 
 #Preview {
-    CoffeeListView(isFavScreen: false, coffeeItem: mockData[0])
+    CoffeeListView(isFavScreen: false, coffeeItem: menuItems[0])
 }

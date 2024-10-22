@@ -9,12 +9,15 @@ import SwiftUI
 
 struct DetailCoffeeView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @State var isLiked = false
     let detailCoffee: Coffee
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .top) {
                 ZStack(alignment: .bottom) {
-                    Image("coffee-detail")
+                    Image(detailCoffee.image)
                         .resizable()
                         .frame(height: 280)
                     HStack {
@@ -55,9 +58,17 @@ struct DetailCoffeeView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        isLiked.toggle()
+                        if isLiked {
+                            let aCoffee = listCoffeeBase.listFavouriteCoffee.first(where: { $0.id == detailCoffee.id })
+                            if aCoffee == nil {
+                                listCoffeeBase.listFavouriteCoffee.append(detailCoffee)
+                            }
+                        } else {
+                            listCoffeeBase.listFavouriteCoffee.removeAll(where: { $0.id == detailCoffee.id })
+                        }
                     }, label: {
-                        Image(systemName: detailCoffee.isFavourite ? "heart.fill" : "heart")
+                        Image(systemName: isLiked ? "heart.fill" : "heart")
                             .foregroundStyle(.red)
                             .font(.title)
                     })
@@ -69,7 +80,7 @@ struct DetailCoffeeView: View {
             VStack {
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
-                        Text("Coffee Size")
+                        Text("Size")
                             .bold()
                             .font(.system(size: 20))
                             .padding(.top, 8)
@@ -98,7 +109,7 @@ struct DetailCoffeeView: View {
                     }
                     
                     Button {
-                        
+                        listCoffeeBase.listCoffeeInCart.append(detailCoffee)
                     } label: {
                         HStack {
                             Spacer()
@@ -131,5 +142,5 @@ struct DetailCoffeeView: View {
 }
 
 #Preview {
-    DetailCoffeeView(detailCoffee: mockData[0])
+    DetailCoffeeView(detailCoffee: menuItems[0])
 }

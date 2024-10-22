@@ -28,4 +28,12 @@ enum StepOrder {
 class ListCoffeeBase: ObservableObject {
     @Published var listCoffeeInCart: [Coffee] = []
     @Published var listFavouriteCoffee: [Coffee] = []
+    
+    func getTotal() -> Int {
+        var total: Int = 0
+        listFavouriteCoffee.forEach { coffee in
+            total += Int(coffee.prize) ?? 0
+        }
+        return total
+    }
 }
