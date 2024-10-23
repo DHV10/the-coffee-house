@@ -9,8 +9,12 @@ import SwiftUI
 
 struct DetailCoffeeView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     @State var isLiked = false
+    @State var totalCaramel = 0
+    @State var totalBanana = 0
+    @State var totalChocolate = 0
+    @State var totalStraw = 0
     let detailCoffee: Coffee
     
     var body: some View {
@@ -97,19 +101,34 @@ struct DetailCoffeeView: View {
                         .padding(.top)
                         
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Add Topping(1$)")
+                            Text("Add Topping")
                                 .bold()
                                 .font(.system(size: 20))
-                            AddToppingView(aTopping: Toppings(name: "Caramel", total: 0))
-                            AddToppingView(aTopping: Toppings(name: "Banana ", total: 0))
-                            AddToppingView(aTopping: Toppings(name: "Chocolate", total: 0))
-                            AddToppingView(aTopping: Toppings(name: "Strawberry", total: 0))
+                            AddToppingView(aTopping: Toppings(name: "Caramel"), totalTopping: $totalCaramel)
+                            AddToppingView(aTopping: Toppings(name: "Banana "), totalTopping: $totalBanana)
+                            AddToppingView(aTopping: Toppings(name: "Chocolate"), totalTopping: $totalChocolate)
+                            AddToppingView(aTopping: Toppings(name: "Strawberry"), totalTopping: $totalStraw)
                         }
                         .padding(.vertical)
                     }
                     
                     Button {
-                        listCoffeeBase.listCoffeeInCart.append(detailCoffee)
+                        if let index = listCoffeeBase.listCoffeeInCart.firstIndex(where: { $0.id == detailCoffee.id }) {
+                            listCoffeeBase.listCoffeeInCart[index].quantity += 1
+                        } else {
+                            listCoffeeBase.listCoffeeInCart.append(detailCoffee)
+                        }
+                        withAnimation(.easeInOut) {
+                            listCoffeeBase.isAdded = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.easeInOut) {
+                                listCoffeeBase.isAdded = false
+                            }
+                        }
+                        listCoffeeBase.updateTotalPrize()
+                        listCoffeeBase.updateNumberOfCoffee()
+
                     } label: {
                         HStack {
                             Spacer()
@@ -138,6 +157,9 @@ struct DetailCoffeeView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .navigationBarBackButtonHidden()
+        .onAppear {
+            isLiked = ((listCoffeeBase.listFavouriteCoffee.first(where: { $0.id == detailCoffee.id })?.isFavourite) != nil)
+        }
     }
 }
 

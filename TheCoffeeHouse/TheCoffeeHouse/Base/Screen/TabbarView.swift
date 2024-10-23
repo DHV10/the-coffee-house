@@ -8,48 +8,50 @@
 import SwiftUI
 
 struct TabbarView: View {
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    VStack {
-                        Image(systemName: "house.fill")
-                        Text("Home")
+        ZStack {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "house.fill")
+                            Text("Home")
+                        }
+                        .foregroundStyle(.brown)
                     }
-                    .foregroundStyle(.brown)
-                }
-            
-            FavouriteView()
-                .tabItem {
-                    VStack {
-                        Image(systemName: "heart.fill")
-                        Text("Favourite")
+                
+                FavouriteView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "heart.fill")
+                            Text("Favourite")
+                        }
                     }
-                }
-            
-            CartView()
-                .tabItem {
-                    VStack {
-                        Image(systemName: "cart.fill")
-                        Text("CartView")
+                
+                CartView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "cart.fill")
+                            Text("CartView")
+                        }
                     }
-                }
-                .badge("\(listCoffeeBase.listCoffeeInCart.count)")
-            
-            ProfileView()
-                .tabItem {
-                    VStack {
-                        Image(systemName:"person.circle")
-                        Text("Profile")
+                    .badge("\(listCoffeeBase.numberOfCoffee)")
+                
+                ProfileView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName:"person.circle")
+                            Text("Profile")
+                        }
                     }
-                }
+            }
+            .tint(.brown)
+            .onAppear(perform: {
+                UITabBar.appearance().backgroundColor = UIColor(Color(hex: "#F8F7FA") ?? .gray)
+            })
         }
-        .tint(.brown)
-        .onAppear(perform: {
-            UITabBar.appearance().backgroundColor = UIColor(Color(hex: "#F8F7FA") ?? .gray)
-        })
     }
 }
 

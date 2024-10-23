@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrderView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     @ObservedObject var viewModel = OrderViewModel()
     @State var total: Int = 0
     
@@ -28,8 +28,17 @@ struct OrderView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack {
-                    ForEach(listCoffeeBase.listCoffeeInCart) { order in
-                        CoffeeListView(isFavScreen: false, coffeeItem: order)
+                    if listCoffeeBase.numberOfCoffee > 0 {
+                        ForEach(listCoffeeBase.listCoffeeInCart) { order in
+                            CoffeeListView(isFavScreen: false, coffeeItem: order)
+                        }
+                    } else {
+                        HStack {
+                            Spacer()
+                            EmptyView()
+                                .padding(30)
+                            Spacer()
+                        }
                     }
                 }
             }
@@ -51,33 +60,30 @@ struct OrderView: View {
             Spacer()
             
             VStack {
-                Text("Total: \(viewModel.total)$")
+                Text("Total: \(listCoffeeBase.totalPrize)$")
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .font(.headline)
-                
-                HStack {
-                    Text("Go to Cart")
-                        .foregroundStyle(.white)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-                .bold()
-                .font(.title3)
-                .foregroundStyle(.white)
-                .padding(16)
-                .background {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(.black)
-                        .stroke(Color.gray, lineWidth: 1)
+                if listCoffeeBase.numberOfCoffee > 0 {
+                    HStack {
+                        Text("Create Order")
+                            .foregroundStyle(.white)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .bold()
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                    .padding(16)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(.black)
+                            .stroke(Color.gray, lineWidth: 1)
+                    }
                 }
             }
         }
         .padding(.horizontal, 32)
         .navigationBarBackButtonHidden()
-        .onAppear(perform: {
-            viewModel.listOrder = listCoffeeBase.listCoffeeInCart
-            viewModel.getTotal()
-        })
     }
 }
 

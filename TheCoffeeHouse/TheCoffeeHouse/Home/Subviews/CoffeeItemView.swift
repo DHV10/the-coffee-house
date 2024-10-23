@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CoffeeItemView: View {
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
-    @State private var selectedSize: String = "M"
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     @State var isLiked = false
     var coffeeItem: Coffee
     
@@ -59,7 +58,21 @@ struct CoffeeItemView: View {
                     Spacer()
                     
                     Button(action: {
-                        listCoffeeBase.listCoffeeInCart.append(coffeeItem)
+                        if let index = listCoffeeBase.listCoffeeInCart.firstIndex(where: { $0.id == coffeeItem.id }) {
+                            listCoffeeBase.listCoffeeInCart[index].quantity += 1
+                        } else {
+                            listCoffeeBase.listCoffeeInCart.append(coffeeItem)
+                        }
+                        withAnimation(.easeInOut) {
+                            listCoffeeBase.isAdded = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.easeInOut) {
+                                listCoffeeBase.isAdded = false
+                            }
+                        }
+                        listCoffeeBase.updateTotalPrize()
+                        listCoffeeBase.updateNumberOfCoffee()
                     }) {
                         Image("add_brown")
                             .resizable()
@@ -75,10 +88,13 @@ struct CoffeeItemView: View {
             RoundedRectangle(cornerRadius: 24)
                 .stroke(Color(hex: "#BFBDC0") ?? .black, lineWidth: 0.5)
         )
+        .onAppear {
+            isLiked = ((listCoffeeBase.listFavouriteCoffee.first(where: { $0.id == coffeeItem.id })?.isFavourite) != nil)
+        }
     }
 }
 
 #Preview {
-    CoffeeItemView(coffeeItem: Coffee(id: "123", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], isFavourite: true))
+    CoffeeItemView(coffeeItem: Coffee(image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], category: "COFFEE", isFavourite: true))
 }
 

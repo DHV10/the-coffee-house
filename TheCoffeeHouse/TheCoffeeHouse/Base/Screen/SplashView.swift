@@ -12,7 +12,7 @@ struct SplashView: View {
         ZStack {
             Rectangle()
                 .fill(Color(hex: "#422110") ?? .black)
-            Image(ImageConstant.coffeeLogo.rawValue)
+            Image("coffee-logo")
         }
         .ignoresSafeArea()
     }

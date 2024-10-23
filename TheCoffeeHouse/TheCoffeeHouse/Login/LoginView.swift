@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var profile: UserProfileModel = UserProfileModel()
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     
     var body: some View {
         ZStack {
@@ -21,7 +22,6 @@ struct LoginView: View {
             
             Image("backgroundLoginMid")
                 .scaledToFit()
-            
             VStack(alignment: .leading, spacing: 2) {
                 Spacer()
                 
@@ -52,6 +52,7 @@ struct LoginView: View {
                 
                 TextField("", text: $profile.phoneNumber)
                     .keyboardType(.numberPad)
+                    .scrollDismissesKeyboard(.interactively)
                     .padding([.vertical, .trailing])
                     .padding(.leading, 12)
                     .background(
@@ -60,18 +61,27 @@ struct LoginView: View {
                     )
                     .padding(.bottom, 40)
                 
-                Button {
-                    
+                NavigationLink(isActive: $listCoffeeBase.isLoggedIn) {
+                    TabbarView()
+                        .navigationBarBackButtonHidden()
                 } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(height: 56)
-                            .cornerRadius(16)
-                            .foregroundStyle(Color(hex: "#422110") ?? .blue)
-                        
-                        Text("Login")
-                            .font(.headline)
-                            .foregroundColor(.white)
+                    Button {
+                        if !profile.username.isEmpty && !profile.username.isEmpty {
+                            withAnimation {
+                                listCoffeeBase.isLoggedIn = true
+                            }
+                        }
+                    } label: {
+                        ZStack {
+                            Rectangle()
+                                .frame(height: 56)
+                                .cornerRadius(16)
+                                .foregroundStyle(Color(hex: "#422110") ?? .blue)
+                            
+                            Text("Login")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
                     }
                 }
                 Spacer()
@@ -79,6 +89,10 @@ struct LoginView: View {
             .padding(40)
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
+        .onTapGesture {
+            UIApplication.shared.endEditing()
+        }
     }
 }
 

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CoffeeListView: View {
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     let isFavScreen: Bool
     let coffeeItem: Coffee
-    
+
     var body: some View {
         HStack(alignment: .top) {
             Image(coffeeItem.image)
@@ -29,32 +29,59 @@ struct CoffeeListView: View {
                         .foregroundStyle(.red)
                 }
             }
-            
+
             Spacer()
-            
+
             VStack(alignment: .trailing) {
                 HStack {
                     Image(systemName: "star.fill")
-                    Text("4.4")
+                    Text(coffeeItem.rate)
                 }
                 .foregroundStyle(.secondary)
-                
+
                 HStack {
                     if !isFavScreen {
                         Button {
-                            
+                            if let index = listCoffeeBase.listCoffeeInCart.firstIndex(where: { $0.id == coffeeItem.id }) {
+                                let quantity = listCoffeeBase.listCoffeeInCart[index].quantity
+                                if quantity > 1 {
+                                    listCoffeeBase.listCoffeeInCart[index].quantity -= 1
+                                } else {
+                                    listCoffeeBase.listCoffeeInCart.removeAll(where: { $0.id == coffeeItem.id })
+                                }
+                            }
+                            listCoffeeBase.updateTotalPrize()
+                            listCoffeeBase.updateNumberOfCoffee()
                         } label: {
                             Image("less")
                         }
+
+                        Text("\(coffeeItem.quantity)")
+                            .font(.subheadline)
                     }
-                    
-                    if isFavScreen {
-                        Button {
+
+                    Button {
+                        if let index = listCoffeeBase.listCoffeeInCart.firstIndex(where: { $0.id == coffeeItem.id }) {
+                            listCoffeeBase.listCoffeeInCart[index].quantity += 1
+                        } else {
                             listCoffeeBase.listCoffeeInCart.append(coffeeItem)
-                        } label: {
-                            Image("add-icon")
                         }
+                        if isFavScreen {
+                            withAnimation(.easeInOut) {
+                                listCoffeeBase.isAdded = true
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                withAnimation(.easeInOut) {
+                                    listCoffeeBase.isAdded = false
+                                }
+                            }
+                        }
+                        listCoffeeBase.updateTotalPrize()
+                        listCoffeeBase.updateNumberOfCoffee()
+                    } label: {
+                        Image("add-icon")
                     }
+
                 }
             }
         }

@@ -8,12 +8,14 @@
 import Foundation
 
 struct Coffee: Codable, Identifiable {
-    let id: String
+    var id = UUID()
     let image: String
     let title: String
     let about: String
     let prize: String
     let rate: String
     let size: [String]
+    let category: String
     var isFavourite: Bool
+    var quantity: Int = 1
 }

@@ -7,33 +7,29 @@
 
 import Foundation
 
-enum ImageConstant: String {
-    case coffeeLogo = "coffee-logo"
-    case login = "login"
-}
-
-enum PaymentMethod {
-    case applePay
-    case visa
-    case cash
-}
-
-enum StepOrder {
-    case confirmed
-    case processed
-    case onDelivery
-    case completed
-}
-
-class ListCoffeeBase: ObservableObject {
+class CommonCoffeeBase: ObservableObject {
     @Published var listCoffeeInCart: [Coffee] = []
     @Published var listFavouriteCoffee: [Coffee] = []
+    @Published var numberOfCoffee: Int = 0
+    @Published var totalPrize: Int = 0
+    @Published var isAdded: Bool = false
+    @Published var isSplashActive: Bool = true
+    @Published var isLoggedIn: Bool = false
+    @Published var listCategoriesSelected: [String] = []
     
-    func getTotal() -> Int {
+    func updateTotalPrize() {
         var total: Int = 0
-        listFavouriteCoffee.forEach { coffee in
-            total += Int(coffee.prize) ?? 0
+        listCoffeeInCart.forEach { coffee in
+            total += (Int(coffee.prize) ?? 0) * coffee.quantity
         }
-        return total
+        totalPrize = total
+    }
+    
+    func updateNumberOfCoffee() {
+        var total = 0
+        listCoffeeInCart.forEach({ coffee in
+            total += coffee.quantity
+        })
+        numberOfCoffee = total
     }
 }

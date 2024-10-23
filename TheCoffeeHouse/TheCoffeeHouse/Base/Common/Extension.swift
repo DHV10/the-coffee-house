@@ -34,3 +34,9 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

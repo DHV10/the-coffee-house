@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CategoriesView: View {
-
-    let categories = [
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
+    var categories = [
         ("COFFEE", "coffee-cat"),
         ("DESSERTS", "pancake"),
         ("ALCOHOL", "wine"),
@@ -41,7 +41,11 @@ struct CategoriesView: View {
         return ZStack(alignment: .topLeading) {
             ForEach(self.categories, id: \.0) { category in
                 CategoryItem(title: category.0, icon: category.1, action: {
-                    
+                    if listCoffeeBase.listCategoriesSelected.filter({ $0 == category.0 }).isEmpty {
+                        listCoffeeBase.listCategoriesSelected.append(category.0)
+                    } else {
+                        listCoffeeBase.listCategoriesSelected.removeAll(where: { $0 == category.0 })
+                    }
                 })
                 .padding([.horizontal, .vertical], 5)
                 .alignmentGuide(.leading, computeValue: { d in
@@ -70,8 +74,4 @@ struct CategoriesView: View {
             }
         }
     }
-}
-
-#Preview {
-    CategoriesView()
 }

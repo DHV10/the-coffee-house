@@ -9,11 +9,11 @@ import SwiftUI
 
 struct Toppings {
     var name: String
-    var total: Int
 }
 
 struct AddToppingView: View {
     let aTopping: Toppings
+    @Binding var totalTopping: Int
     
     var body: some View {
         VStack {
@@ -21,14 +21,16 @@ struct AddToppingView: View {
                 Text("\(aTopping.name)")
                 Spacer()
                 Button {
-                    
+                    if totalTopping > 0 {
+                        totalTopping -= 1
+                    }
                 } label: {
                     Image("less_o")
                 }
                 
-                Text("\(aTopping.total)")
+                Text("\(totalTopping)")
                 Button {
-                    
+                    totalTopping += 1
                 } label: {
                     Image("add_o")
                 }
@@ -40,8 +42,4 @@ struct AddToppingView: View {
         }
         
     }
-}
-
-#Preview {
-    AddToppingView(aTopping: Toppings(name: "carmel", total: 3))
 }

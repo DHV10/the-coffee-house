@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CartView: View {
-    @EnvironmentObject var listCoffeeBase: ListCoffeeBase
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     @ObservedObject var viewModel = CartViewModel()
     @State var total: Int = 0
     
@@ -30,17 +30,22 @@ struct CartView: View {
                     .font(.title3)
                 ScrollView(showsIndicators: false)  {
                     VStack {
-                        if viewModel.listCartCoffee.isEmpty {
-                            EmptyView()
+                        if listCoffeeBase.listCoffeeInCart.isEmpty {
+                            HStack {
+                                Spacer()
+                                EmptyView()
+                                    .padding(60)
+                                Spacer()
+                            }
                         } else {
-                            ForEach(viewModel.listCartCoffee) { coffee in
+                            ForEach(listCoffeeBase.listCoffeeInCart) { coffee in
                                 CoffeeListView(isFavScreen: false, coffeeItem: coffee)
                             }
                         }
                     }
                 }
-                if !viewModel.listCartCoffee.isEmpty {
-                    Text("Total: \(viewModel.total)$")
+                if !listCoffeeBase.listCoffeeInCart.isEmpty {
+                    Text("Total: \(listCoffeeBase.totalPrize)$")
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical)
                         .font(.headline)
@@ -70,10 +75,6 @@ struct CartView: View {
             }
             .padding(.horizontal, 32)
             .padding(.bottom, 16)
-            .onAppear(perform: {
-                viewModel.listCartCoffee = listCoffeeBase.listCoffeeInCart
-                viewModel.getTotal()
-            })
         }
         .navigationBarBackButtonHidden()
     }

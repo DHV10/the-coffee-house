@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     private var viewModel = ProfileViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(spacing: 40) {
@@ -43,15 +44,20 @@ struct ProfileView: View {
                     Image(systemName: "pencil.line")
                 }
                 
-                HStack {
-                    Spacer()
-                    Text("Logout")
-                        .padding()
-                    Image(systemName: "arrow.right.to.line")
+                Button {
+                    dismiss()
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Logout")
+                            .padding()
+                        Image(systemName: "arrow.right.to.line")
+                    }
+                    .foregroundStyle(Color(hex: "#CB8A58") ?? .black)
+                    .bold()
+                    .font(.title3)
                 }
-                .foregroundStyle(Color(hex: "#CB8A58") ?? .black)
-                .bold()
-                .font(.title3)
+
                 
             }
             Spacer()

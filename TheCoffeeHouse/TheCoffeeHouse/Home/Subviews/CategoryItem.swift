@@ -49,11 +49,6 @@ struct CategoryItem: View {
     }
 }
 
-
-#Preview {
-    CategoryItem(title: "ALCOHOL FREE", icon: "leaf.fill", action: {})
-}
-
 struct CoffeeSizeButton: View {
     var title: String
     var isSelected: Bool

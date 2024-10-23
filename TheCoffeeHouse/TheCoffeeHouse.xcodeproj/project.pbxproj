@@ -19,6 +19,8 @@
 		9B5BAA952CC39C2600E6247E /* TrackOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BAA942CC39C2600E6247E /* TrackOrderView.swift */; };
 		9B701ADE2CC7606700296AD5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B701ADD2CC7606700296AD5 /* HomeViewModel.swift */; };
 		9B701AE02CC80B7C00296AD5 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B701ADF2CC80B7C00296AD5 /* EmptyView.swift */; };
+		9B701AE22CC932FE00296AD5 /* CheckedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B701AE12CC932FE00296AD5 /* CheckedView.swift */; };
+		9B701AE42CC94E9200296AD5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B701AE32CC94E9200296AD5 /* BaseView.swift */; };
 		9B7AD64E2CC68F4D0088B216 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B7AD64D2CC68F4D0088B216 /* Assets.xcassets */; };
 		9B7AD6552CC695CA0088B216 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD6542CC695CA0088B216 /* MapView.swift */; };
 		9B7AD65A2CC69F5A0088B216 /* OrderStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD6592CC69F5A0088B216 /* OrderStatusView.swift */; };
@@ -58,6 +60,8 @@
 		9B5BAA942CC39C2600E6247E /* TrackOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderView.swift; sourceTree = "<group>"; };
 		9B701ADD2CC7606700296AD5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9B701ADF2CC80B7C00296AD5 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		9B701AE12CC932FE00296AD5 /* CheckedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedView.swift; sourceTree = "<group>"; };
+		9B701AE32CC94E9200296AD5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		9B7AD64D2CC68F4D0088B216 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B7AD6542CC695CA0088B216 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9B7AD6592CC69F5A0088B216 /* OrderStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusView.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				9B8335362CC16BC00000CFC5 /* CoffeeItemView.swift */,
 				9B25D3BC2CC34AB90082E38D /* SearchView.swift */,
 				9B701ADF2CC80B7C00296AD5 /* EmptyView.swift */,
+				9B701AE12CC932FE00296AD5 /* CheckedView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				9BCAE7322CBD7C22006FFE1A /* TabbarView.swift */,
 				9BCAE7302CBD7C22006FFE1A /* TheCoffeeHouseApp.swift */,
 				9BB6E2412CBFFD7F00E00281 /* SplashView.swift */,
+				9B701AE32CC94E9200296AD5 /* BaseView.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				9B701ADE2CC7606700296AD5 /* HomeViewModel.swift in Sources */,
 				9B8335372CC16BC00000CFC5 /* CoffeeItemView.swift in Sources */,
 				9BB6E24E2CBFFE3300E00281 /* CartView.swift in Sources */,
+				9B701AE22CC932FE00296AD5 /* CheckedView.swift in Sources */,
 				9BCAE7332CBD7C22006FFE1A /* TabbarView.swift in Sources */,
 				9BB6E2442CBFFD8900E00281 /* HomeView.swift in Sources */,
 				9B5BAA8A2CC38E7D00E6247E /* DetailCoffeeView.swift in Sources */,
@@ -391,6 +398,7 @@
 				9B4D46ED2CC3A83B003D0399 /* ProfileViewModel.swift in Sources */,
 				9BB6E2502CBFFE4200E00281 /* ProfileView.swift in Sources */,
 				9BB6E2422CBFFD7F00E00281 /* SplashView.swift in Sources */,
+				9B701AE42CC94E9200296AD5 /* BaseView.swift in Sources */,
 				9B7AD65D2CC69F700088B216 /* OrderStatusItem.swift in Sources */,
 				9BB6E25E2CC0064200E00281 /* HomeModel.swift in Sources */,
 				9B8335332CC1694E0000CFC5 /* CategoryItem.swift in Sources */,

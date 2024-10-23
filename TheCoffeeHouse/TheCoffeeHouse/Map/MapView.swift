@@ -14,6 +14,7 @@ struct MapView: View {
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
+    @State var searchText = ""
     
     let locations = [
         Location(name: "FPT Software, Tan Xa, Thach That, Ha Noi", latitude: 21.0095717, longitude: 105.5313047)
@@ -51,7 +52,7 @@ struct MapView: View {
                     }, label: {
                         Image("back_white")
                     })
-                    SearchView()
+                    SearchView(searchText: $searchText)
                 }
                 Spacer()
             }
