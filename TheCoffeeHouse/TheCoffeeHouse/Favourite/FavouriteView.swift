@@ -44,9 +44,9 @@ struct FavouriteView: View {
         .onAppear {
             listCoffeeFiltered = listCoffeeBase.listFavouriteCoffee
         }
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
+//        .onTapGesture {
+//            UIApplication.shared.endEditing()
+//        }
     }
 }
 
