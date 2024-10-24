@@ -66,7 +66,7 @@ struct LoginView: View {
                         .navigationBarBackButtonHidden()
                 } label: {
                     Button {
-                        if !profile.username.isEmpty && !profile.username.isEmpty {
+                        if !profile.username.isEmpty && !profile.phoneNumber.isEmpty {
                             withAnimation {
                                 listCoffeeBase.isLoggedIn = true
                             }

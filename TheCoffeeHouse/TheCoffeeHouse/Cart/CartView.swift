@@ -17,12 +17,7 @@ struct CartView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    NavigationLink {
-                        TrackOrderView()
-                            .toolbar(.hidden, for: .tabBar)
-                    } label: {
-                        Image("carbon_delivery")
-                    }
+                    Image("carbon_delivery")
                 }
                 
                 Text("YOUR ORDER:")

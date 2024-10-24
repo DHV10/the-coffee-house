@@ -12,6 +12,7 @@ struct OrderView: View {
     @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
     @ObservedObject var viewModel = OrderViewModel()
     @State var total: Int = 0
+    @State private var navigateToDetail = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -64,20 +65,27 @@ struct OrderView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .font(.headline)
                 if listCoffeeBase.numberOfCoffee > 0 {
-                    HStack {
-                        Text("Create Order")
-                            .foregroundStyle(.white)
-                        Spacer()
-                        Image(systemName: "chevron.right")
+                    Button {
+                        navigateToDetail = true
+                    } label: {
+                        HStack {
+                            Text("Create Order")
+                                .foregroundStyle(.white)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .bold()
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .padding(16)
+                        .background {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(.black)
+                                .stroke(Color.gray, lineWidth: 1)
+                        }
                     }
-                    .bold()
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .padding(16)
-                    .background {
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(.black)
-                            .stroke(Color.gray, lineWidth: 1)
+                    .navigationDestination(isPresented: $navigateToDetail) {
+                        TrackOrderView()
                     }
                 }
             }

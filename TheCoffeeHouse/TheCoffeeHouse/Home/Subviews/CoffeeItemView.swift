@@ -95,6 +95,6 @@ struct CoffeeItemView: View {
 }
 
 #Preview {
-    CoffeeItemView(coffeeItem: Coffee(image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], category: "COFFEE", isFavourite: true))
+    CoffeeItemView(coffeeItem: Coffee(id: "1", image: "", title: "Coffee", about: "sadjasdhakjsdhajksd", prize: "7", rate: "3", size: [], category: "COFFEE", isFavourite: true))
 }
 

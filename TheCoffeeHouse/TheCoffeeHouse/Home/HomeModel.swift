@@ -8,7 +8,7 @@
 import Foundation
 
 struct Coffee: Codable, Identifiable {
-    var id = UUID()
+    var id: String
     let image: String
     let title: String
     let about: String

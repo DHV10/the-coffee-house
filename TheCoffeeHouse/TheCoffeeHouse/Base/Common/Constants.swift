@@ -8,6 +8,7 @@
 import Foundation
 
 class CommonCoffeeBase: ObservableObject {
+    @Published var lisCoffeeHome: [Coffee] = []
     @Published var listCoffeeInCart: [Coffee] = []
     @Published var listFavouriteCoffee: [Coffee] = []
     @Published var numberOfCoffee: Int = 0

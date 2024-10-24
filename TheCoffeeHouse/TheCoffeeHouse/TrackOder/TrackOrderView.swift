@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TrackOrderView: View {
+    @EnvironmentObject var listCoffeeBase: CommonCoffeeBase
+    
     var body: some View {
         ZStack {
             Color(hex: "#2C2C2C")
@@ -48,6 +50,11 @@ struct TrackOrderView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            listCoffeeBase.listCoffeeInCart.removeAll()
+            listCoffeeBase.updateNumberOfCoffee()
+            listCoffeeBase.updateTotalPrize()
+        }
     }
 }
 
